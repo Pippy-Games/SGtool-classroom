@@ -181,59 +181,29 @@
   .dl-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
   .file-meta{font-size:13px;color:var(--muted)}
 
-  /* ---------- 演示面板 ---------- */
+  /* ---------- 演示面板（截图版） ---------- */
   .demo{border-radius:22px;padding:22px;position:relative;overflow:hidden}
   .demo .top{display:flex;align-items:center;gap:7px;margin-bottom:18px}
   .dot{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.28)}
   .demo .title{margin-left:auto;font-size:12px;letter-spacing:.6px;opacity:.75}
 
-  .pick{
-    background:radial-gradient(120% 140% at 85% 0%,#1e2f5e 0%,#0e1729 55%,#0b1220 100%);
-    color:#fff;text-align:center;padding:26px 22px 28px;
-    box-shadow:0 26px 50px -26px rgba(11,18,32,.85);
+  .demo.screenshot{
+    background:#1e2f5e;
+    border:1px solid #2c3e6b;
+    padding:16px;
   }
-  .pick::after{
-    content:"";position:absolute;width:260px;height:260px;right:-90px;top:-110px;
-    background:radial-gradient(circle,rgba(47,107,255,.55),transparent 70%);pointer-events:none;
+  .demo.screenshot .top{
+    margin-bottom:12px;
   }
-  .pick .top{position:relative;z-index:1}
-  .pick-name{
-    position:relative;z-index:1;
-    font-size:clamp(34px,6vw,46px);font-weight:800;letter-spacing:4px;
-    background:linear-gradient(100deg,#8fb6ff,#c3b4ff);
-    -webkit-background-clip:text;background-clip:text;color:transparent;
-    min-height:1.35em;transition:filter .15s;
+  .demo.screenshot img{
+    width:100%;
+    height:auto;
+    display:block;
+    border-radius:12px;
+    border:1px solid rgba(255,255,255,.12);
+    box-shadow:0 12px 28px -12px rgba(0,0,0,.6);
+    background:#fff;
   }
-  .pick-name.rolling{filter:blur(.6px);opacity:.85}
-  .pick-meta{position:relative;z-index:1;font-size:13px;color:#8ea2c8;margin-top:4px}
-  .pick-btn{
-    position:relative;z-index:1;display:inline-block;margin-top:20px;
-    padding:11px 34px;border-radius:12px;font-size:15px;font-weight:700;letter-spacing:2px;
-    background:linear-gradient(100deg,var(--brand),var(--brand-2));color:#fff;
-    cursor:pointer;user-select:none;border:0;font-family:inherit;
-    box-shadow:0 14px 26px -14px rgba(47,107,255,1);transition:.18s;
-  }
-  .pick-btn:hover{transform:translateY(-2px)}
-  .pick-btn:disabled{opacity:.55;cursor:default;transform:none}
-
-  .seat{background:#f7f9ff;border:1px solid var(--line)}
-  .seat .dot{background:#c6d2e8}
-  .seat .title{color:var(--muted)}
-  .podium{
-    text-align:center;font-size:12px;letter-spacing:6px;color:var(--brand);
-    font-weight:700;background:#e8efff;border-radius:10px;padding:7px;margin-bottom:14px;
-  }
-  .seat-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:7px}
-  .seat-grid span{
-    background:#fff;border:1px solid #e2e9f8;border-radius:9px;
-    font-size:11.5px;text-align:center;padding:9px 2px;color:#3b475f;
-    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
-    transition:.2s;
-  }
-  .seat-grid span:nth-child(3n){
-    background:linear-gradient(135deg,#eef3ff,#e6ecff);border-color:#d6e0ff;color:var(--brand);font-weight:600;
-  }
-  .seat-grid span:hover{transform:translateY(-2px);box-shadow:0 8px 16px -10px rgba(47,107,255,.8)}
 
   /* ---------- 更多工具预告 ---------- */
   .more{
@@ -322,8 +292,6 @@
     .nav .links a{padding:7px 9px;font-size:12.5px}
     .nav .brand small{display:none}
     .tool{border-radius:22px;padding:24px 18px}
-    .seat-grid span{font-size:10px;padding:7px 1px}
-    .seat-grid{gap:5px}
     .btn{width:100%;justify-content:center}
     .dl-row{gap:10px}
     .pain{padding:8px 18px 8px 11px;gap:9px}
@@ -408,12 +376,13 @@
 
       <h3>核心功能</h3>
       <ul class="features">
-        <li><b>名单一次导入</b>：把班级名单粘贴进去（一行一个名字），下次打开自动记住。</li>
-        <li><b>滚动抽取动画</b>：名字快速滚动后定格，全班注意力瞬间集中，课堂气氛拉满。</li>
-        <li><b>不重复模式</b>：抽过的同学自动跳过，全班轮完一遍才重新开始，谁也别想“逃”。</li>
-        <li><b>可抽多人</b>：一次抽取 1～6 人，小组任务、上台板演一次抽齐。</li>
-        <li><b>大字投影</b>：结果超大字显示，最后一排也能看清。</li>
-        <li><b>记录与撤回</b>：自动保存抽取记录，抽错了可以撤销重抽。</li>
+        <li><b>名单一次导入</b>：把班级名单粘贴进去，下次打开自动记住。</li>
+        <li><b>滚动抽取动画</b>：名字快速滚动后定格，全班注意力瞬间集中。</li>
+        <li><b>不重复模式</b>：抽过的同学自动跳过，全班轮完一遍才重新开始。</li>
+        <li><b>置顶显示</b>：窗口始终置顶，不被其他软件挡住。</li>
+        <li><b>语音播报</b>：抽到名字时自动语音念出来（可开关）。</li>
+        <li><b>状态统计</b>：实时显示“已点 X · 剩余 Y · 共 Z 人”。</li>
+        <li><b>一键重置</b>：随时重新开始一轮，灵活控制课堂节奏。</li>
       </ul>
 
       <div class="dl-row">
@@ -425,15 +394,13 @@
       </div>
     </div>
 
-    <!-- 演示面板 -->
-    <div class="demo pick">
+    <!-- 演示面板：真实截图 -->
+    <div class="demo screenshot">
       <div class="top">
         <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-        <span class="title">随机点名 v1.2</span>
+        <span class="title">随机点名 v1.2 · 真实界面</span>
       </div>
-      <div class="pick-name" id="pickName">李思远</div>
-      <div class="pick-meta" id="pickMeta">已抽 8 / 42 人 · 不重复模式</div>
-      <button class="pick-btn" id="pickBtn" type="button">开 始 点 名</button>
+      <img src="./随机点名界面.png" alt="随机点名 1.2 界面截图" loading="lazy">
     </div>
   </article>
 
@@ -448,12 +415,14 @@
 
       <h3>核心功能</h3>
       <ul class="features green">
-        <li><b>自由设置座位布局</b>：几行几列、是否留过道，按自己班的教室实际情况来。</li>
-        <li><b>多种排座规则</b>：随机打乱 / 按学号 / 按身高（矮的靠前），一键切换。</li>
-        <li><b>固定座位</b>：视力不好、需要坐前排的同学可锁定位置，重排时不受影响。</li>
-        <li><b>邻座避让</b>：把爱说话的同学设为“不同桌”，排座时自动错开。</li>
-        <li><b>手动微调</b>：生成结果后可拖动交换，个别调整不用重新排一遍。</li>
-        <li><b>导出打印</b>：座位表可导出为图片或表格，打印出来贴讲台、发班级群都方便。</li>
+        <li><b>布局设置</b>：自由调整小组数（如 6 组）和每组排数（如 8 排）。</li>
+        <li><b>同桌设置</b>：可让相邻两组同桌，或全部独立，灵活控制。</li>
+        <li><b>讲台边飞机位</b>：可设置讲台两侧的特殊座位数量。</li>
+        <li><b>学生名单</b>：支持导入、清空、示例，可随机打乱名单顺序。</li>
+        <li><b>智能排座（推荐）</b>：一键按规则自动生成座位表。</li>
+        <li><b>按名单顺序排座</b>：按导入顺序依次落座。</li>
+        <li><b>导出 A4 横图 / 导出文本</b>：座位表可打印、可存档。</li>
+        <li><b>实时统计</b>：总座位数、已用/空余座位一目了然。</li>
       </ul>
 
       <div class="dl-row">
@@ -465,19 +434,13 @@
       </div>
     </div>
 
-    <!-- 演示面板 -->
-    <div class="demo seat">
+    <!-- 演示面板：真实截图 -->
+    <div class="demo screenshot">
       <div class="top">
         <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-        <span class="title">排座位工具 v1.0 · 6 列 × 4 行</span>
+        <span class="title">排座位工具 v1.0 · 真实界面</span>
       </div>
-      <div class="podium">讲 台</div>
-      <div class="seat-grid">
-        <span>李思远</span><span>王雨桐</span><span>陈嘉豪</span><span>赵一诺</span><span>刘子涵</span><span>孙浩然</span>
-        <span>周诗琪</span><span>吴俊杰</span><span>郑欣怡</span><span>黄奕辰</span><span>徐若曦</span><span>何梓萱</span>
-        <span>马天乐</span><span>冯亦航</span><span>唐可欣</span><span>曹梓涵</span><span>邓雨泽</span><span>韩梦瑶</span>
-        <span>杨泽楷</span><span>许安然</span><span>罗子轩</span><span>谢雨萌</span><span>高子墨</span><span>林嘉怡</span>
-      </div>
+      <img src="./排座位界面.png" alt="排座位工具 1.0 界面截图" loading="lazy">
     </div>
   </article>
 
@@ -550,38 +513,6 @@
       });
     }, { threshold: 0.14 });
     els.forEach(function (el) { io.observe(el); });
-  })();
-
-  /* 点名演示动画 */
-  (function () {
-    var names = ['李思远','王雨桐','陈嘉豪','赵一诺','刘子涵','孙浩然',
-                 '周诗琪','吴俊杰','郑欣怡','黄奕辰','徐若曦','何梓萱'];
-    var nameEl = document.getElementById('pickName');
-    var metaEl = document.getElementById('pickMeta');
-    var btn    = document.getElementById('pickBtn');
-    if (!nameEl || !btn) return;
-
-    var count = 8, total = 42, timer = null;
-
-    btn.addEventListener('click', function () {
-      if (timer) return;
-      btn.disabled = true;
-      nameEl.classList.add('rolling');
-      var ticks = 0;
-
-      timer = setInterval(function () {
-        nameEl.textContent = names[Math.floor(Math.random() * names.length)];
-        ticks++;
-        if (ticks >= 16) {
-          clearInterval(timer);
-          timer = null;
-          nameEl.classList.remove('rolling');
-          count = count >= total ? 1 : count + 1;
-          metaEl.textContent = '已抽 ' + count + ' / ' + total + ' 人 · 不重复模式';
-          btn.disabled = false;
-        }
-      }, 70);
-    });
   })();
 
   /* 年份 */
